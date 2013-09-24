@@ -16,7 +16,10 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-var appDbName = "locations";
+var coax = require("coax");
+
+var appDbName = "locations",
+    REMOTE_SYNC_URL = 'http://sync.couchbasecloud.com:4984/locations';
 
 var app = {
     // Application Constructor

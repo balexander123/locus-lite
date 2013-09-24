@@ -70,12 +70,20 @@
 describe('database', function() {
 
     describe('configuration', function() {
-        beforeEach(function() {
-
-        });
 
         it('should know the database configuration', function() {
             expect(appDbName).toEqual('locations');
+        });
+
+        it('should know the remote sync URL', function() {
+            expect(REMOTE_SYNC_URL).toEqual('http://sync.couchbasecloud.com:4984/locations');
+        });
+    });
+
+    describe('connection', function() {
+
+        it('should have a coax connection', function() {
+            expect(coax).not.toEqual(null);
         });
     });
 });
