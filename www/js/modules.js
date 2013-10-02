@@ -1,4 +1,4 @@
-;(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"VAjHoM":[function(require,module,exports){
 /*
  * coax
  * https://github.com/jchris/coax
@@ -120,7 +120,9 @@ Coax.extend("channels", function(channels, opts) {
   return changes;
 });
 
-},{"hoax":2,"pax":6}],2:[function(require,module,exports){
+},{"hoax":3,"pax":7}],"coax":[function(require,module,exports){
+module.exports=require('VAjHoM');
+},{}],3:[function(require,module,exports){
 var core = require("./hoax-core"),
   request = require("browser-request");
 
@@ -128,7 +130,7 @@ request.log.debug = function() {};
 
 module.exports = core(request);
 
-},{"./hoax-core":3,"browser-request":4}],3:[function(require,module,exports){
+},{"./hoax-core":4,"browser-request":5}],4:[function(require,module,exports){
 /*
  * hoax
  * https://github.com/jchris/hoax
@@ -218,7 +220,12 @@ module.exports = function(request) {
       if (cb) {
         // console.log(["hoax", verb||"get", reqOpts]);
         if (verb) {
-          return request[verb](reqOpts, makeHoaxCallback(cb, verb));
+          if (verb == "del") {
+            reqOpts.method = "DELETE";
+          } else {
+            reqOpts.method = verb.toUpperCase();
+          }
+          return request(reqOpts, makeHoaxCallback(cb, verb));
         } else {
           return request(reqOpts, makeHoaxCallback(cb));
         }
@@ -235,7 +242,8 @@ module.exports = function(request) {
     addExtensions(newHoax, oldHoax);
     // should this be extenderizer(newHoax) ?
     newHoax.extend = extenderizer(oldHoax);
-    newHoax.pax = myPax;
+    newHoax.pax = myPax; // deprecated
+    newHoax.url = myPax;
     return newHoax;
   }
 
@@ -246,7 +254,7 @@ module.exports = function(request) {
 };
 
 
-},{"pax":6}],4:[function(require,module,exports){
+},{"pax":7}],5:[function(require,module,exports){
 // Browser Request
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -636,7 +644,7 @@ function b64_enc (data) {
     return enc;
 }
 
-},{"./xmlhttprequest":5}],5:[function(require,module,exports){
+},{"./xmlhttprequest":6}],6:[function(require,module,exports){
 
 
 !function(window) {
@@ -1210,7 +1218,7 @@ function b64_enc (data) {
   }
 }(typeof window !== 'undefined' ? window : {});
 
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 /*
  * pax
  * https://github.com/jchris/pax
@@ -1355,61 +1363,5 @@ function growPax(path, newPath) {
 module.exports = makeNextPathFun([]);
 
 
-},{}],7:[function(require,module,exports){
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-var coax = require("coax");
-
-var appDbName = "locations",
-    REMOTE_SYNC_URL = 'http://sync.couchbasecloud.com:4984/locations';
-
-var app = {
-    // Application Constructor
-    initialize: function() {
-        this.bindEvents();
-    },
-    // Bind Event Listeners
-    //
-    // Bind any events that are required on startup. Common events are:
-    // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
-    },
-    // deviceready Event Handler
-    //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicity call 'app.receivedEvent(...);'
-    onDeviceReady: function() {
-        app.receivedEvent('deviceready');
-    },
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);
-    }
-};
-
-},{"coax":1}]},{},[7])
+},{}]},{},[])
 ;
