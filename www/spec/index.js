@@ -73,8 +73,8 @@ describe('location', function() {
 
     beforeEach(function() {
         fake_coords = {
-            latitude: 50.0,
-            longitude: 50.0,
+            latitude: 37.791269,
+            longitude: -122.390978,
             timestamp: new Date().getTime()
         };
         position = {
@@ -85,12 +85,14 @@ describe('location', function() {
     describe('device location', function() {
         it('should know the location of the device', function() {
             expect(deviceLocation).not.toEqual(null);
-            var callback = spyOn(deviceLocation, 'setCurrentLocation');
+            var callback = spyOn(deviceLocation, 'setCurrentLocation').andCallThrough();
             spyOn(navigator.geolocation, 'getCurrentPosition').andCallFake(function() {
                 deviceLocation.setCurrentLocation(position);
             })
             deviceLocation.getCurrentPosition();
             expect(callback).toHaveBeenCalled();
+            expect(deviceLocation.latitude).toEqual(37.791269);
+            expect(deviceLocation.longitude).toEqual(-122.390978);
         });
     });
 });
