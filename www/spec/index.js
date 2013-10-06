@@ -42,28 +42,6 @@
             expect(app.receivedEvent).toHaveBeenCalledWith('deviceready');
         });
     });
-
-    describe('receivedEvent', function() {
-        beforeEach(function() {
-            var el = document.getElementById('stage');
-            el.innerHTML = ['<div id="deviceready">',
-            '    <p class="event listening">Listening</p>',
-            '    <p class="event received">Received</p>',
-            '</div>'].join('\n');
-        });
-
-        it('should hide the listening element', function() {
-            app.receivedEvent('deviceready');
-            var displayStyle = helper.getComputedStyle('#deviceready .listening', 'display');
-            expect(displayStyle).toEqual('none');
-        });
-
-        it('should show the received element', function() {
-            app.receivedEvent('deviceready');
-            var displayStyle = helper.getComputedStyle('#deviceready .received', 'display');
-            expect(displayStyle).toEqual('block');
-        });
-    });
 });
 
 
@@ -84,6 +62,35 @@ describe('database', function() {
 
         it('should have a coax connection', function() {
             expect(coax).not.toEqual(null);
+        });
+    });
+});
+
+
+describe('location', function() {
+    var position ;
+    var fake_coords;
+
+    beforeEach(function() {
+        fake_coords = {
+            latitude: 50.0,
+            longitude: 50.0,
+            timestamp: new Date().getTime()
+        };
+        position = {
+            coords: fake_coords
+        }
+    });
+
+    describe('device location', function() {
+        it('should know the location of the device', function() {
+            expect(deviceLocation).not.toEqual(null);
+            var callback = spyOn(deviceLocation, 'setCurrentLocation');
+            spyOn(navigator.geolocation, 'getCurrentPosition').andCallFake(function() {
+                deviceLocation.setCurrentLocation(position);
+            })
+            deviceLocation.getCurrentPosition();
+            expect(callback).toHaveBeenCalled();
         });
     });
 });

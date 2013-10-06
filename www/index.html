@@ -18,7 +18,7 @@
     under the License.
 -->
 <html>
-    <head>
+    <html lang="en" ng-app="locus-lite">
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
@@ -26,13 +26,8 @@
         <title>Locus Lite</title>
     </head>
     <body>
-        <div class="app">
-            <h1>PhoneGap</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
-        </div>
+        <div ng-view></div>
+        <script type="text/javascript" src="lib/angular/angular.js"></script>
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/modules.js"></script>
         <script type="text/javascript" src="js/index.js"></script>

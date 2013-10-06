@@ -37,17 +37,33 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+        deviceLocation.getCurrentPosition();
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
         console.log('Received Event: ' + id);
+    }
+};
+
+var deviceLocation = {
+    latitude: null,
+    longitude: null,
+    timestamp: null,
+    
+    getCurrentPosition: function() {
+        console.log('navigator.geolocation.getCurrentPosition: ' + navigator.geolocation.getCurrentPosition);
+        navigator.geolocation.getCurrentPosition(deviceLocation.setCurrentLocation, deviceLocation.onError);
+    },
+
+    setCurrentLocation: function(position) {
+        deviceLocation.latitude = position.coords.latitude;
+        deviceLocation.longitude = position.coords.longitude;
+        deviceLocation.timestamp = position.coords.timestamp;
+    },
+
+    onError: function(error) {
+        alert('code: ' + error.code    + '\n' +
+          'message: ' + error.message + '\n');
     }
 };
 

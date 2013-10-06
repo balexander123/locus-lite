@@ -42,40 +42,39 @@
             expect(app.receivedEvent).toHaveBeenCalledWith('deviceready');
         });
     });
-
-    describe('receivedEvent', function() {
-        beforeEach(function() {
-            var el = document.getElementById('stage');
-            el.innerHTML = ['<div id="deviceready">',
-            '    <p class="event listening">Listening</p>',
-            '    <p class="event received">Received</p>',
-            '</div>'].join('\n');
-        });
-
-        it('should hide the listening element', function() {
-            app.receivedEvent('deviceready');
-            var displayStyle = helper.getComputedStyle('#deviceready .listening', 'display');
-            expect(displayStyle).toEqual('none');
-        });
-
-        it('should show the received element', function() {
-            app.receivedEvent('deviceready');
-            var displayStyle = helper.getComputedStyle('#deviceready .received', 'display');
-            expect(displayStyle).toEqual('block');
-        });
-    });
 });
 
 
 describe('database', function() {
 
     describe('configuration', function() {
-        beforeEach(function() {
-
-        });
 
         it('should know the database configuration', function() {
             expect(appDbName).toEqual('locations');
+        });
+
+        it('should know the remote sync URL', function() {
+            expect(REMOTE_SYNC_URL).toEqual('http://sync.couchbasecloud.com:4984/locations');
+        });
+    });
+
+    describe('connection', function() {
+
+        it('should have a coax connection', function() {
+            expect(coax).not.toEqual(null);
+        });
+    });
+});
+
+
+describe('location', function() {
+
+    describe('device location', function() {
+        it('should know the location of the device', function() {
+            expect(deviceLocation).not.toEqual(null);
+            var callback = spyOn(deviceLocation, 'setCurrentLocation');
+            deviceLocation.getCurrentPosition();
+            expect(callback).toHaveBeenCalled();
         });
     });
 });

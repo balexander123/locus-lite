@@ -59,6 +59,7 @@
 		2C5912659F404AE39BEE7C8D /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B5D882B964944F09811C3B1 /* libicucore.dylib */; };
 		9D277215F98741028B06D1DD /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB4152801D84AEF8F6D307A /* libz.dylib */; };
 		086429FB6B064111A8AC89B6 /* Security.framework in Resources */ = {isa = PBXBuildFile; fileRef = BFA9578084BA44EC9A29A413 /* Security.framework */; };
+		9532D80E991344EBABE8B28F /* CDVLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA56F7078DFE497EA7375D1B /* CDVLocation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -164,6 +165,8 @@
 		4B5D882B964944F09811C3B1 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libicucore.dylib"; path = "usr/lib/libicucore.dylib"; sourceTree = SDKROOT; fileEncoding = 4; };
 		9AB4152801D84AEF8F6D307A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libz.dylib"; path = "usr/lib/libz.dylib"; sourceTree = SDKROOT; fileEncoding = 4; };
 		BFA9578084BA44EC9A29A413 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Security.framework"; path = "System/Library/Frameworks/Security.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
+		EA56F7078DFE497EA7375D1B /* CDVLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVLocation.m"; path = "org.apache.cordova.geolocation/CDVLocation.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		FD8B422FDDB94FD4B4160D6E /* CDVLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVLocation.h"; path = "org.apache.cordova.geolocation/CDVLocation.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -359,6 +362,8 @@
 				BF9E1A97680D4A77A334FC30 /* JavaScript.h */,
 				C7DABCAC416D4CE78C2E0C74 /* JavaScriptCore.h */,
 				8576BF4FF1054C1399CF973E /* WebKitAvailability.h */,
+				EA56F7078DFE497EA7375D1B /* CDVLocation.m */,
+				FD8B422FDDB94FD4B4160D6E /* CDVLocation.h */,
 			);
 			name = Plugins;
 			path = "LocusLite/Plugins";
@@ -531,6 +536,7 @@
 				EFF0A4698C224BFD8C5A0BD4 /* CouchbaseLiteListener.a in Frameworks */,
 				B410900C4F344177B82FD176 /* JavaScriptCore.a in Frameworks */,
 				DD09AFE92FCD40028EF02989 /* libCBLJSViewCompiler.a in Frameworks */,
+				9532D80E991344EBABE8B28F /* CDVLocation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
