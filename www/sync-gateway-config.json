@@ -1,0 +1,17 @@
+{
+  "log": ["CRUD", "REST+", "Access"],
+  "facebook": { "register": true },
+  "databases": {
+    "locations": {
+      "server": "walrus:",
+      "users": {
+        "GUEST": {"disabled": true}
+      },
+      "sync": `
+
+sync-gateway-config.json
+
+`
+    }
+  }
+}

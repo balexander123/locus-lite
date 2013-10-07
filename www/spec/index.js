@@ -95,4 +95,11 @@ describe('location', function() {
             expect(deviceLocation.longitude).toEqual(-122.390978);
         });
     });
+
+    describe('user location', function() {
+        it('should know the nearest Gap campus of user', function() {
+            expect('pending').toEqual('completed');
+        });
+    });
+    
 });
